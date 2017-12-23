@@ -1,0 +1,43 @@
+<%- include('../template/header') %>
+
+  <h1>
+    <%- title %>
+  </h1>
+  <%- include('./nav') %>
+
+  <div class="d-banner">
+    <form class="" action="/dashboard/banner" method="post" enctype="multipart/form-data">
+      <input type="file" name="banner">
+      <input type="text" name="desc" value="" placeholder="简介">
+      <input type="submit" value="上传">
+    </form>
+    <ul>
+      <% banners.forEach(function(banner, index) { %>
+        <li>
+          <div>
+            <%= banner.id %> <%= banner.image_url %> <%= banner.text %>
+            <img src="<%= banner.image_url %>"/>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+
+  <script type="text/javascript">
+    var input_file = document.querySelectorAll('input[type=file]')
+    input_file[0].addEventListener('change', function() {
+      var image = this.files[0]
+      console.log(image)
+      if(!image.type.match('image')) {
+        alert('请上传图片格式文件')
+        this.value = ''
+      }else {
+        if(image.size > 2048000) {
+          alert('图片应小于2M')
+          this.value = ''
+        }
+      }
+    })
+  </script>
+
+<%- include('../template/footer') %>

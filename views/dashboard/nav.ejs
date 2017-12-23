@@ -1,0 +1,32 @@
+<nav>
+  <ul>
+    <li>
+      <a href="/dashboard/banner" data-target="banner">banner</a>
+    </li>
+    <li>
+      <a href="/dashboard/article" data-target="article">文章</a>
+    </li>
+  </ul>
+</nav>
+
+<script type="text/javascript">
+  var url = window.location.href
+  var kay_word = url.split('/')[4]
+  var nav_a = document.querySelectorAll('nav a')
+  console.log(nav_a)
+  for(var i = 0; i < nav_a.length; i++) {
+    (function(j) {
+      if(kay_word === nav_a[i].dataset['target']) {
+        nav_a[i].classList.add('nav-a-active')
+        nav_a[i].setAttribute('href', 'javascript:;')
+      }
+    })(i)
+  }
+</script>
+
+<style media="screen">
+  .nav-a-active {
+    color: #000;
+    text-decoration: none;
+  }
+</style>

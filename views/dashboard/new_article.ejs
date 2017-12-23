@@ -1,0 +1,70 @@
+<%- include('../template/header') %>
+
+  <h1>
+    <%- title %>
+  </h1>
+  <%- include('./nav') %>
+
+  <form class="" action="/dashboard/article/new" method="post">
+    <div class="title">
+      <input type="text" name="title" value="" placeholder="文章标题">
+    </div>
+    <%# <textarea name="content" rows="8" cols="80" placeholder="文章内容"></textarea>%>
+    <input type="hidden" name="content" value="" id="hidden-content">
+    <div class="">
+      <div id="toolbar">
+        <%# <button class="ql-bold">Bold</button>%>
+        <%# <button class="ql-italic">Italic</button>%>
+      </div>
+      <div id="editor">
+        <p>Hello World!</p>
+      </div>
+
+    </div>
+    <div class="btn">
+      <input type="submit" value="上传文章">
+    </div>
+  </form>
+
+  <div id="get-btn">
+    获取内容
+  </div>
+
+  <link rel="stylesheet" type="text/css" href="/static/quill/dist/quill.snow.css" />
+
+  <script src="/static/quill/dist/quill.js"></script>
+
+  <script>
+    var toolbarOptions = [
+      ['bold', 'italic', 'underline', 'strike'],
+      ['blockquote', 'code-block'],
+      [{ 'header': 1 }, { 'header': 2 }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],
+      [{ 'indent': '-1'}, { 'indent': '+1' }],
+      [{ 'direction': 'rtl' }],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+      ['clean']
+    ]
+    var editor = new Quill('#editor', {
+      modules: {
+        // toolbar: '#toolbar'
+        toolbar: toolbarOptions
+      },
+      theme: 'snow'
+    })
+
+    document.getElementById('get-btn').addEventListener('click', function() {
+      console.log(editor.root.innerHTML)
+    })
+
+    editor.on('text-change', function() {
+      document.getElementById('hidden-content').value = editor.root.innerHTML
+    })
+  </script>
+
+<%- include('../template/footer') %>

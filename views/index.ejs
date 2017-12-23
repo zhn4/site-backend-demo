@@ -1,0 +1,23 @@
+<%- include('./template/header') %>
+    <h1><%= title %></h1>
+    <div class="banners">
+      <% if(banners) { %>
+        <% banners.forEach(function(banner, index) { %>
+          <img src="<%= banner.image_url %>" />
+        <% }) %>
+      <% } %>
+
+
+    </div>
+    <div class="article">
+      <% if(article) { %>
+        <ul>
+          <% article.forEach(function(article, index) { %>
+            <li>
+              <%= article.title %>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </div>
+<%- include('./template/footer') %>

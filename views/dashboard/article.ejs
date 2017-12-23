@@ -1,0 +1,17 @@
+<%- include('../template/header') %>
+
+  <h1>
+    <%- title %>
+  </h1>
+  <%- include('./nav') %>
+  <a href="/dashboard/article/new">添加文章</a>
+  <ul>
+    <% articles.forEach(function(article, index) { %>
+      <li>
+        <div>
+          <%= article.id %> <%= article.title %>
+        </div>
+      </li>
+    <% }) %>
+  </ul>
+<%- include('../template/footer') %>
